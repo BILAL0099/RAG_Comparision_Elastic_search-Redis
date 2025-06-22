@@ -193,31 +193,6 @@ DELETE /session/{session_id}/history
     "elasticsearch_response": { ... }
 }
 ```
-
-## Usage Examples
-
-### Python Client Example
-```python
-import requests
-
-# Compare both search methods
-response = requests.post("http://localhost:8000/search/compare", json={
-    "question": "What are the benefits of renewable energy?",
-    "session_id": "user_123"
-})
-
-data = response.json()
-print(f"Redis Response Time: {data['redis_response']['response_time']:.2f}s")
-print(f"Elasticsearch Response Time: {data['elasticsearch_response']['response_time']:.2f}s")
-```
-
-### cURL Example
-```bash
-curl -X POST "http://localhost:8000/search/redis" \
-  -H "Content-Type: application/json" \
-  -d '{"question": "Explain quantum computing", "session_id": "test_session"}'
-```
-
 ## Features in Detail
 
 ### Conversational Memory
@@ -263,28 +238,6 @@ Enable verbose logging by setting environment variable:
 ```bash
 export LANGCHAIN_DEBUG=true
 ```
-
-## Development
-
-### Running in Development Mode
-```bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
-
-### Testing
-```bash
-# Test health endpoint
-curl http://localhost:8000/health
-
-# Test individual search
-curl -X POST http://localhost:8000/search/redis \
-  -H "Content-Type: application/json" \
-  -d '{"question": "test question"}'
-```
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contributing
 
