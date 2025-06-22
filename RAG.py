@@ -162,7 +162,7 @@ Answer:."""),
 
 def get_chat_memory(session_id: str):
     """Initialize Redis chat memory for conversation history"""
-    redis_url = "redis://default:1PhTVfuSdeBKSvKEqcmBQRGFzEXwza9z@redis-18318.c281.us-east-1-2.ec2.redns.redis-cloud.com:18318"
+    redis_url = os.getenv("REDIS_URL")
     
     try:
         message_history = RedisChatMessageHistory(
